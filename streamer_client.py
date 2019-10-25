@@ -38,8 +38,8 @@ def initiate_browser(streamer_name):
 
 def initializer_params():
 	breakpoint = 1
-	coef = 1.8
-	streamer_name = 'lestream'
+	coef = 1.1
+	streamer_name = 'gotaga'
 	delai_time = 1801
 	return breakpoint, coef, streamer_name, delai_time
 
@@ -182,7 +182,7 @@ def randomString(stringLength=10):
 
 def createName():
 	str_end = randomString(5)
-	name1 = "test" + str_end + '.mkv'
+	name1 = "test" + str_end + '.mp4'
 	return name1
 
 def csvwriter_clip(clip_time, num_page_items, breakpoint, coef, name1, streamer_name, final_string, current_time):
@@ -231,7 +231,6 @@ def stream_downloader_clip(name1):
 	driver.close()
 	driver.switch_to_window(window_before)
 	driver.refresh()
-	return window_before
 				
 def uploadmongobands3(name, streamer_Title, streamer_game, current_date, realtimestamp, window_before):
 	s3 = boto3.client('s3')
@@ -263,9 +262,6 @@ def uploadmongobands3(name, streamer_Title, streamer_game, current_date, realtim
 	} 
 	collection.insert_one(object)
 	print("Successfully sent to MongoDB and AWS")
-	driver.close()
-	driver.switch_to_window(window_before)
-	driver.get(streamer_link)
 	os.remove(name1 + ".mp4")
 
 def timestamp_register():
