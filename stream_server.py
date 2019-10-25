@@ -19,7 +19,7 @@ streamers = {
 		"instance": "0d4eb30aa2f5142d7"
 	},
 	2 : {
-		"name": "sardoche",
+		"name": "summit1g",
 		"instance": "0e9434b17bece5070"
 	}
 }
