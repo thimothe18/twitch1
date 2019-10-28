@@ -7,6 +7,17 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 import clipboard
 import boto3
+
+def restart():
+	import sys
+	print("argv was",sys.argv)
+	print("sys.executable was", sys.executable)
+	print("restart now")
+
+	import os
+	os.execv(sys.executable, ['python'] + sys.argv)
+	print("Restarting script")
+
 starttime=time.time()
 client = boto3.client('ec2', region_name='us-east-1')
 ec2 = boto3.resource('ec2', region_name='us-east-1')
