@@ -37,8 +37,8 @@ def initiate_browser(streamer_name):
 
 def initializer_params():
 	breakpoint = 1
-	coef = 1.1
-	streamer_name = 'gotaga'
+	coef = 1.9
+	streamer_name = 'lestream'
 	delai_time = 1801
 	return breakpoint, coef, streamer_name, delai_time
 
@@ -235,7 +235,7 @@ def uploadmongobands3(name1, streamer_Title, streamer_game, current_date, realti
 	s3 = boto3.client('s3')
 	source = "source"
 	date = "date"
-	filename = name
+	filename = name1
 	bucket_name = 'compartiment-thimothe'
 	nom = "name"
 			
@@ -262,7 +262,7 @@ def uploadmongobands3(name1, streamer_Title, streamer_game, current_date, realti
 	} 
 	collection.insert_one(object)
 	print("Successfully sent to MongoDB and AWS")
-	os.remove(name1 + ".mp4")
+	os.remove(name1)
 
 def timestamp_register():
 	try:
