@@ -25,7 +25,6 @@ import streamlink
 from subprocess import Popen
 from time import sleep
 
-
 def initiate_browser(streamer_name):
 	options = Options()
 	options.headless = True
@@ -232,7 +231,7 @@ def stream_downloader_clip(name1):
 	driver.switch_to_window(window_before)
 	driver.refresh()
 				
-def uploadmongobands3(name, streamer_Title, streamer_game, current_date, realtimestamp):
+def uploadmongobands3(name1, streamer_Title, streamer_game, current_date, realtimestamp):
 	s3 = boto3.client('s3')
 	source = "source"
 	date = "date"
@@ -246,7 +245,7 @@ def uploadmongobands3(name, streamer_Title, streamer_game, current_date, realtim
 	client = MongoClient('mongodb+srv://cheval:Tiganala18@test-y9xs2.gcp.mongodb.net/test?retryWrites=true')
 	db = client.test
 	collection = db.items
-	collection.create_index("date", expireAfterSeconds=604800)
+	collection.create_index("deleted_date", expireAfterSeconds=604800)
 	
 	object = { 
 	source: "https://s3.eu-west-3.amazonaws.com/compartiment-thimothe/" + name1 + ".mp4",
@@ -258,7 +257,8 @@ def uploadmongobands3(name, streamer_Title, streamer_game, current_date, realtim
 	"date": current_date,
 	"time": current_time,
 	"timestamp": realtimestamp,
-	"message": calcul
+	"message": calcul,
+	"deleted_date": datetime.datetime.utcnow()
 	} 
 	collection.insert_one(object)
 	print("Successfully sent to MongoDB and AWS")
