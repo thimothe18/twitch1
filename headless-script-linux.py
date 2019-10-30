@@ -30,7 +30,7 @@ def initiate_browser(streamer_name):
 	options.headless = True
 	streamer_link = "https://www.twitch.tv/" + streamer_name
 	#global driver
-	driver = webdriver.Firefox()
+	driver = webdriver.Firefox(options=options)
 	driver.get(streamer_link)
 	driver.implicitly_wait(15)
 	return driver, streamer_link
