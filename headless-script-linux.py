@@ -37,8 +37,8 @@ def initiate_browser(streamer_name):
 
 def initializer_params():
 	breakpoint = 1
-	coef = 1.9
-	streamer_name = 'lestream'
+	coef = 1.1
+	streamer_name = 'mrbboy45'
 	delai_time = 1801
 	return breakpoint, coef, streamer_name, delai_time
 
@@ -198,16 +198,17 @@ def stream_downloader(name1):
 	time.sleep(30)
 	ffmpeg_process.kill()
 
-def stream_downloader_clip(name1):
+def stream_downloader_clip(name1, driver):
 	time.sleep(20)
 	window_before = driver.window_handles[0]
 	try:
-		element_to_hover_over = driver.find_element_by_xpath("/html/body/div[1]/div/div[2]/div[2]/main/div[2]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div[2]")
-		hover = ActionChains(driver)
-		hover.move_to_element(element_to_hover_over)
-		clipbutton = driver.find_element_by_css_selector('.player-controls__right-control-group > div:nth-child(2) > button:nth-child(1)')
-		hover.click(clipbutton)
-		hover.perform()
+		#element_to_hover_over = driver.find_element_by_xpath("/html/body/div[1]/div/div[2]/div[2]/main/div[2]/div[3]/div/div/div[2]/div/div[2]/div/div/div/div[2]")
+		#hover = ActionChains(driver)
+		#hover.move_to_element(element_to_hover_over)
+		#clipbutton = driver.find_element_by_css_selector('.player-controls__right-control-group > div:nth-child(2) > button:nth-child(1)')
+		#hover.click(clipbutton)
+		#hover.perform()
+		ActionChains(driver).key_down(Keys.LEFT_ALT).send_keys('x').key_up(Keys.LEFT_ALT).perform()
 		print("Successfully clicked on clip button")
 	except:
 		print("clip button not found")
@@ -312,7 +313,7 @@ while breakpoint > 0:
 			final_string, calcul, realstreamergame, vrainbviewers, current_time, streamer_Title, streamer_game, current_date, realtimestamp  = parametersclip_add(num_pages_items)
 			name1 = createName()
 			csvwriter_clip(clip_time, num_pages_items, breakpoint, coef, name1, streamer_name, final_string, current_time)
-			stream_downloader_clip(name1)
+			stream_downloader_clip(name1, driver)
 			uploadmongobands3(name1, streamer_Title, streamer_game, current_date, realtimestamp)
 		else:
 			clip_time = time_counter()
