@@ -37,7 +37,7 @@ def initiate_browser(streamer_name):
 
 def initializer_params():
 	breakpoint = 1
-	coef = 1.1
+	coef = 1.9
 	streamer_name = 'summit1g'
 	delai_time = 1801
 	return breakpoint, coef, streamer_name, delai_time
