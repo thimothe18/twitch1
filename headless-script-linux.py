@@ -30,7 +30,7 @@ def initiate_browser(streamer_name):
 	options.headless = True
 	streamer_link = "https://www.twitch.tv/" + streamer_name
 	#global driver
-	driver = webdriver.Firefox(options=options)
+	driver = webdriver.Firefox()
 	driver.get(streamer_link)
 	driver.implicitly_wait(15)
 	return driver, streamer_link
@@ -38,7 +38,7 @@ def initiate_browser(streamer_name):
 def initializer_params():
 	breakpoint = 1
 	coef = 1.1
-	streamer_name = 'mrbboy45'
+	streamer_name = 'summit1g'
 	delai_time = 1801
 	return breakpoint, coef, streamer_name, delai_time
 
@@ -210,8 +210,9 @@ def stream_downloader_clip(name1, driver):
 		#hover.perform()
 		ActionChains(driver).key_down(Keys.LEFT_ALT).send_keys('x').key_up(Keys.LEFT_ALT).perform()
 		print("Successfully clicked on clip button")
-	except:
+	except Exception as e:
 		print("clip button not found")
+		print(e)
 	time.sleep(15)
 	window_after = driver.window_handles[1]
 	driver.switch_to_window(window_after)
@@ -249,7 +250,7 @@ def uploadmongobands3(name1, streamer_Title, streamer_game, current_date, realti
 	collection.create_index("deleted_date", expireAfterSeconds=604800)
 	
 	object = { 
-	source: "https://s3.eu-west-3.amazonaws.com/compartiment-thimothe/" + name1 + ".mp4",
+	source: "https://s3.eu-west-3.amazonaws.com/compartiment-thimothe/" + name1,
 	date: datetime.datetime.utcnow(),
 	nom: streamer_name,
 	"title": streamer_Title,
